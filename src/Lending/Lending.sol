@@ -602,7 +602,7 @@ contract Lending is ILendingPool, Ownable2Step, ReentrancyGuard, Pausable {
             uint256 scaledDebt = userScaledBorrow[user][asset];
             if (scaledDebt == 0) continue;
 
-            Reserve memory reserve = _getUpdatedReserve(asset);
+            Reserve memory reserve = _getStoredReserve(asset);
             uint256 borrowBalance = LendingMath.scaledToUnderlying(scaledDebt, reserve.borrowIndex, Math.Rounding.Ceil);
             if (borrowBalance == 0) continue;
 
